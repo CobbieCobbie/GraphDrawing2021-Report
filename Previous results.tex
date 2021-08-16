@@ -11,7 +11,7 @@ In order to investigate the edge-length ratio, the first approach was to draw si
 		\includegraphics[page=1]{drawings/previous-results.pdf}
 		\caption{Triangle}
 	\end{figure}
-	Since $\sqrt{3}$ is an irrational number, therefore there exists no combination of coordinates on a grid in order to represent the triangle. Otherwise, there would exists two integers to represent $\sqrt{3}$ as a fraction. Therefore, there exists no drawing of a triangle with edge-length ratio 1.
+	Since $\sqrt{3}$ is an irrational number, therefore there exists no combination of coordinates on a grid in order to represent the triangle. Otherwise, there would exists two integers to represent $\sqrt{3}$ as a fraction. Therefore, there exists no drawing of a triangle on a fixed grid with edge-length ratio 1.
 \end{proof}
 If we want to get close to an egde-length ratio of 1, we are bound to approximate the cofactor $\sqrt{3}/2$ in the height of the triangle. 
 \begin{observation}
@@ -188,7 +188,7 @@ A binary tree is 1-connected. It is of interest, how the edge-length ratio behav
 	\end{figure}
 	The ratio can be expressed as:
 	\begin{align*}
-		\text{ratio}_d = 2^{\lfloor\frac{d}{2}\rfloor-1} + \frac{1}{2}\in \mathcal{O}(n)
+		\text{ratio}_d = 2^{\lfloor\frac{d}{2}\rfloor-1} + \frac{1}{2}\in \mathcal{O}(\sqrt{n})
 	\end{align*}
 \end{proof}
 \subsection{General observations / thoughts}

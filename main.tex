@@ -17,6 +17,8 @@
 % \usepackage[bookmarksnumbered,hyperfootnotes=false]{hyperref} % ,pdftitle={\titleDocument}
 \usepackage{color}
 \usepackage{float}
+\usepackage[backend=biber]{biblatex}
+\bibliography{Bibliography} % bib file name
 
 \usepackage{geometry}
 \geometry{left=3.5cm, right=2cm, top=2.5cm, bottom=2cm}
@@ -39,6 +41,7 @@
 \newtheorem{definition}{Definition}
 \newtheorem{corollary}{Corollary}
 \newtheorem{observation}{Observation}
+\newtheorem{fact}{Fact}
 \newcommand{\comment}[1]
 {
 	\begin{quotation}
@@ -51,12 +54,12 @@
 		\textcolor{red}{\underline{TODO:} #1}
 	\end{quotation}
 }
-\newcommand{\mygraphics}[3][2]{
-	\begin{figure}[h]
-		\centering
-		\includegraphics[page=#1]{#2}
-		\caption{#3}
-	\end{figure}
+
+\newcommand{\Kommentar}[1]
+{
+	\begin{quotation}
+		\textcolor{blue}{\underline{Kommentar:} #1}
+	\end{quotation}
 }
 % Symbols
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
@@ -86,11 +89,18 @@
 \widowpenalty = 10000
 \displaywidowpenalty = 10000
 
+
+
 \begin{document}
 %\include{title.tex}
 %\include{intro.tex}
 %\include{preliminaries.tex}
-\include{symposium.tex}
-% \include{2021-03-25_report.tex}
-\include{Previous results.tex}
+%\include{symposium.tex}
+%\include{reports/2021-03-25_report.tex}
+%\include{Previous results.tex}
+%\include{2-trees.tex}
+%\include{3-trees.tex}
+\include{Maximal_planar.tex}
+%\include{reports/2021-05-06_research-project-report.tex}
+% \printbibliography
 \end{document}
