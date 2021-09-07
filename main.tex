@@ -14,6 +14,7 @@
 \usepackage{textcomp}
 \usepackage{gensymb}
 \usepackage[linesnumbered,ruled,vlined,norelsize]{algorithm2e}
+\usepackage{algpseudocode}
 % \usepackage[bookmarksnumbered,hyperfootnotes=false]{hyperref} % ,pdftitle={\titleDocument}
 \usepackage{color}
 \usepackage{float}
@@ -63,6 +64,7 @@
 }
 % Symbols
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\UL}{\texttt{UL}}
 
 % neue Kopfzeilen mit fancypaket
 \usepackage{fancyhdr} %Paket laden
@@ -92,15 +94,13 @@
 
 
 \begin{document}
-%\include{title.tex}
-%\include{intro.tex}
-%\include{preliminaries.tex}
-%\include{symposium.tex}
-%\include{reports/2021-03-25_report.tex}
-%\include{Previous results.tex}
-%\include{2-trees.tex}
-%\include{3-trees.tex}
+\include{title.tex}
+\include{intro.tex}
+\include{preliminaries.tex}
+\include{The_problem}
 \include{Maximal_planar.tex}
-%\include{reports/2021-05-06_research-project-report.tex}
-% \printbibliography
+\include{2-trees.tex}
+\include{other_results.tex}
+\include{future_work}
+%\printbibliography
 \end{document}

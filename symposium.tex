@@ -7,16 +7,3 @@ For over 25 years, an international symposium of Graph Drawing and Network Visua
 	\item[Automatic:] The teams will use their own defined toolchain. Therefore, the challenge graphs will be large ones.
 	\item[Manual:] A given graph tool will only provide the  functionality to manually move objects. This prohibits any algorithm to work on the solution.
 \end{description}
-\subsection{The challenge}
-There has been recent attention to the edge-length ratio of a planar drawing, which describes the ratio between the lengths of the longest edge and the shortest edge in a drawing. 
-\newline This year, the main topic addresses an optimization problem, namely the minimization of the edge-length ratio of poly-line drawings of planar, undirected graphs on a fixed grid. For a poly-line edge, the edge-length is the sum of the line segment lengths.
-\bigbreak The input consists of a JSON file with the following entries:
-\begin{description}
-	\item[nodes] Every node has an unique ID value between 0 and the amount of nodes - 1, a value for the $x$ and $y$ coordinate each, delimited by the width and height
-	\item[edges] Every edge has an ID for source and destination each and an optional list of bend points, specified in $x$ and $y$ coordinate
-	\item[width (optional)] The maximum $x$-coordinate of the grid. If unspecified, the width is set to 1,000,000.
-	\item[height (optional)] The maximum $y$ coordinate of the grid. If unspecified, the height is set to 1,000,000.
-	\item[bends] The maximum number of bends allowed per edge
-\end{description}
-The results of the optimization are also JSON files. The planarity of the graph shall be preserved and the poly-line edge-length ratio minimized by relocation of the nodes.
-\bigbreak For the teams participating with their own tools, an embedding might not be given with the input. For the participants working manually, an embedding is already given beforehand.
