@@ -19,7 +19,14 @@ In a maximal planar graph $G$, every face is a triangle. Otherwise, $G$ is not m
 
 \bigskip
 Regarding area consumption, the smallest possible face in $\Gamma_G$ is a triangle with two edges of \UL. If these smallest-area faces are adjacent to an edge, then there is no bend point on the grid availiable for further elongation. Each triangle consumes area of $\frac{1}{2}\UL^2$ and the length of $e$ cannot be increased.
-\TODO{Figure of edge of length 1 with small area triangles}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.3\linewidth}
+		\centering
+		\includegraphics[width=0.7\textwidth,page=1]{drawings/maximal_planar.pdf}
+	\end{subfigure}
+\caption{An edge of \UL~(marked in orange), enclosed by two smallest-area triangles}\label{im:area_worst_case_straight-line}
+\end{figure}
 With a refinement in the first step, bend points are inserted into the adjacent triangles since their area consumption expands.
 
 
@@ -32,7 +39,14 @@ Let $f$ be a face with an area consumption of $\mathcal{O}(a(k))$, $a(k)$ monoto
 
 \bigskip
 So, by Fact \ref{fact:area-expansion}, the smallest possible area of a face now equals $\frac{1}{2}(cn)^2\UL^2$. Since every edge of unit length now is at least $c \cdot n$ long, the amount of bend points inside a face $f$ is bound by $\mathcal{O}((cn)^2)$. 
-\TODO{smallest face transition}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.3\linewidth}
+		\centering
+		\includegraphics[width=0.7\textwidth,page=2]{drawings/maximal_planar.pdf}
+	\end{subfigure}
+	\caption{The worst case from Figure \ref{im:area_worst_case_straight-line} after the refinement}\label{im:c-n_worst_case_straight-line}
+\end{figure}
 In the following sections, a straight-line drawing $\Gamma_G$ refined by a certain factor will be called $\Gamma'_G$, since the coordinates of the vertices changed. Although the shapes of the faces will stay the same, the area consumption is a different one.
 
 % Supergraph extension
@@ -95,8 +109,18 @@ A poly-line $p$ can be drawn inside $A$ with length $\mathcal{O}(a(k))$, using $
 \end{lemma}
 When the grid is refined by a factor of $c\cdot n$ in each dimension, every edge of $\Gamma'_G$ can be elongated up to a length of $\Omega((c\cdot n)^2)$, using $O(c\cdot n)$ bends.
 \begin{proof}
-	Consider an edge $e$ of $\Gamma_G$ with \UL, enclosed by two smallest-area triangle faces. After the refinement and graph extension to $\Gamma'_{G'}$, the area consumption of the faces adjacent to $e$ values $\mathcal{O}((cn)^2)$[Fact \ref{fact:even-subdivision} and \ref{fact:area-expansion}]. Using all valid bend points in both faces adjacent to $e$, $e$ can be redrawn with $c\cdot n - 5$ line segments 
-	\TODO{Figures!}(see Figure bla for a visualization). $e$ is redrawn with a zig-zag elongation, using $2\cdot (cn-5)$ valid bend points. The new length of the sequence of line segments values at least:
+	Consider an edge $e$ of $\Gamma_G$ with \UL, enclosed by two smallest-area triangle faces. After the refinement and graph extension to $\Gamma'_{G'}$, the area consumption of the faces adjacent to $e$ values $\mathcal{O}((cn)^2)$[Fact \ref{fact:even-subdivision} and \ref{fact:area-expansion}]. Using all valid bend points in both faces adjacent to $e$, $e$ can be redrawn with $c\cdot n - 5$ line segments.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.3\linewidth}
+			\centering
+			\includegraphics[width=0.7\textwidth,page=3]{drawings/maximal_planar.pdf}
+		\end{subfigure}
+		\caption{Using all valid bend points for line segment insertions}\label{im:all_valid_bend_points}
+	\end{figure}
+	
+	$e$ is redrawn with a zig-zag elongation, using $2\cdot (cn-5)$ valid bend points. The new length of the sequence of line segments values at least:
 	\begin{align}
 		len(e) &\geq 3\cdot \left(2\cdot \sum_{i=1}^{\frac{cn-1}{3}-1}i + \sum_{i=1}^{\frac{cn-1}{3}-1}\sqrt{4i^2+1}\right)\\
 		&> 3\cdot \left(2\cdot \sum_{i=1}^{\frac{cn-1}{3}-1}i + 2 \sum_{i=1}^{\frac{cn-1}{3}-1}i\right)\\
@@ -129,15 +153,47 @@ With a refinement by a factor of $n^2$ and using $n$ bends and the supergraph ex
 \end{proof}
 
 \bigskip
-Next, a lower bound of edge length is determined for a specific kind of face of $G$ - a triangle consisting of a horizontal line segment with length $w$ - also the edge to be elongated - a vertical line segment of height $h$ and the enclosing diagonal line segment. See Figure \TODO{Figure and cite} for a visualization.\\
+Next, a lower bound of edge length is determined for a specific kind of face of $G$ - a triangle consisting of a horizontal line segment with length $w$ - also the edge to be elongated - a vertical line segment of height $h$ and the enclosing diagonal line segment. 
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=4]{drawings/maximal_planar.pdf}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=5]{drawings/maximal_planar.pdf}
+		\caption{}
+	\end{subfigure}
+	\caption{A general width $w$ and height $h$, before (a) and after (b) grid refinement and graph extension}\label{im:h_greater_3w}
+\end{figure}
 When recalling the position of the centroid [Fact \ref{fact:centroid-point}], there are two cases of line segment insertions:\\
 \underline{Case 1:} $h > 3w$\\
-In this case, the height of the face created by the supergraph extension is larger than the length of the edge of interest with length $w$. The line segments of the new polyline are inserted vertically, using valid bend points so that all the inserted line segments are as long as possible. See Figure \TODO{Figure and cite}.\\
+In this case, the height of the face created by the supergraph extension is larger than the length of the edge of interest with length $w$. 
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=6]{drawings/maximal_planar.pdf}
+	\end{subfigure}
+	\caption{Inserting vertical line segments}\label{im:vertical_insertion}
+\end{figure}
+The line segments of the new polyline are inserted vertically, using valid bend points so that all the inserted line segments are as long as possible. 
+
 \underline{Case 2:} $h \leq 3w$\\
-In this case, the length of the original edge $e$ will at least as long as the new height to the inserted centroid $M$ of $G'$. So, the line segments will be placed horizontally, parallel to $e$. In order to preserve planarity, a bend point must be placed near the inserted vertex $M$. See Figure \TODO{Figure and cite}.
+In this case, the length of the original edge $e$ will at least as long as the new height to the inserted centroid $M$ of $G'$. So, the line segments will be placed horizontally, parallel to $e$. In order to preserve planarity, a bend point must be placed near the inserted vertex $M$. 
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=7]{drawings/maximal_planar.pdf}
+	\end{subfigure}
+	\caption{Inserting horizontal line segments. The orange dotted bend points preserve planartiy}\label{im:horizontal_insertion}
+\end{figure}
 \begin{lemma}
 \end{lemma}
-For two integers $w,h$, it holds:
+For two positive integers $w,h>1$, it holds:
 \begin{align*}
 	\frac{hn^2-1}{wn^2-1}<h
 \end{align*}
@@ -154,12 +210,12 @@ For two integers $w,h$, it holds:
 	\end{itemize}
 \end{proof}
 \begin{lemma}
+	When inserting up to $\frac{n}{2}$ line segments horizontally or vertically, depending on the height and the width of the face, the length of the resulting poly-line equals at least $n^3 - \mathcal{O}(n^2)$.
 \end{lemma}
-When inserting up to $\frac{n}{2}$ line segments horizontally or vertically, depending on the height and the width of the face, the length of the resulting poly-line equals at least $n^3 - \mathcal{O}(n^2)$.
+
 \begin{proof}
 	\begin{itemize}
-		\item Case 1: $h > 3w$
-		
+		\item Case 1: $h > 3w$\\		
 		Let $f$ be a face in $\Gamma'_G$ defined by an horizontal edge $e = \overline{AB}$ with length $w' = w\cdot n^2$, w.l.o.g. a vertical line segment $\overline{BC}$ of length $h'=h\cdot n^2$, and the enclosing diagonal line segment. When the graph is extended to $G'$, the centroid is placed in $\Gamma'_{G'}$ at:
 		\begin{align*}
 			M\left(\frac{1}{3}(A_x+B_x+C_x) , \frac{1}{3}(A_y+B_y+C_y) \right)
@@ -174,9 +230,25 @@ When inserting up to $\frac{n}{2}$ line segments horizontally or vertically, dep
 			B&(w'-1,0)\\
 			C&(w'-1,h'-1)\\
 			M&\left(\frac{2}{3}(w'-1),\frac{1}{3}(h'-1)\right)
-		\end{align*}\TODO{Figure}
+		\end{align*}
+		\begin{figure}[H]
+			\centering
+			\begin{subfigure}{0.8\linewidth}
+				\centering
+				\includegraphics[width=0.9\textwidth,page=10]{drawings/maximal_planar.pdf}
+			\end{subfigure}
+			\caption{When $A$ is placed on the origin, this figure shows the positions and linear function descriptions of the faces}\label{im:coordinate_properties}
+		\end{figure}
+	
 		When the y-coordinate of $M$ is greater than $w'$, then vertically inserted line segments will be longer than horizontally inserted ones. The elongation with $n$ bends and $\frac{n}{2}$ vertical line segments looks as follows:
-		\TODO{Figure}
+		\begin{figure}[H]
+			\centering
+			\begin{subfigure}{0.6\linewidth}
+				\centering
+				\includegraphics[width=0.9\textwidth,page=8]{drawings/maximal_planar.pdf}
+			\end{subfigure}
+			\caption{Inserting vertical line segments in one face only}\label{im:vertical_one_face}
+		\end{figure}
 		And the lower bound of the total length can be estimated by the sum of the length of vertical line segments times two, since the diagonal line segments are at least as long as the vertical ones.
 		\begin{align}
 			len(e') &\geq \frac{1}{3}hn^2\cdot \frac{n}{2}-\left(1+\frac{1}{2}\left(\frac{h'-1}{w'-1}\right)\sum_{i=1}^{\left(\frac{n}{2}-1\right)\cdot\frac{2}{3}}i\right)-\left(\frac{h'-1}{w'-1}\sum_{i=1}^{\left(\frac{n}{2}-1\right)\cdot\frac{1}{3}}i\right)\label{eq:vertical}\\
@@ -186,7 +258,14 @@ When inserting up to $\frac{n}{2}$ line segments horizontally or vertically, dep
 	Since $h>3w$ and $h,w\geq1$, the length of the poly-line values at least $wn^3-\mathcal{O}(n^2)$ and the statement holds.
 		\item Case 2: $h \leq 3w$
 	In this case, the original straight line will be substituted with one horizontal line segment starting at $A$, ending in a bend point right before $B$. Furthermore, there will be a bend point right below $C$ in order to preserve planarity. The other horizontal line segments will be placed above the bottom one between $A$ and $B$. The line segments are shortened by $w$ from the right side and $2w$ from the left side, in total $3w$ per insertion. Since we only consider one face, the number of bend points and line segments is halved. 
-	\TODO{Figure}
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.6\linewidth}
+			\centering
+			\includegraphics[width=0.9\textwidth,page=9]{drawings/maximal_planar.pdf}
+		\end{subfigure}
+		\caption{Inserting $\frac{n}{4}$ horizontal line segments. The orange dotted bend point preserves planartiy}\label{im:horizontal_one_face}
+	\end{figure}
 	Then, the following lower bound for the length can be calculated:
 	\begin{align}
 		len(e') &\geq wn^2\cdot\left(\frac{n-2}{4}-3w\sum_{i = 1}^{\frac{n-2}{4}}i\right)\label{eq:horizontals}\\
@@ -198,7 +277,12 @@ When inserting up to $\frac{n}{2}$ line segments horizontally or vertically, dep
 \end{proof}
 
 \bigskip
-The calculated minimum length also holds for any edge of $G$, regardless of the orientation of the faces.
+\begin{lemma}
+	The calculated minimum length also holds for any edge of $G$, regardless of the orientation of the adjacent faces.
+\end{lemma}
+\begin{proof}
+	Since every face is a triangle, the defining line segments can always be described with help of a linear function $f(x)=mx+b$, as already done in Figure \ref{im:coordinate_properties}. Consider a valid bend point $K$. Then, the next valid point lies either above or below by one row, or left or right by one column. The actual position is determined by the slope of the linear function, describing the line segment next to $K$. This slope is a constant. So, by inserting a new horizontal line segment above or below a preexisting one occupying $K$, or by inserting a new vertical line segment left or right a preexisting one occupying $K$, the difference of length between those inserted line segments is a constant one. Therefore, the resulting length of the zig-zag line is of form $n^3-\mathcal{O}(n^2)$.
+\end{proof}
 \begin{theorem}\label{theorem:minimum-polyline-length}
 \end{theorem}
 In $\Gamma'_{G'}$, every edge of $G$ can be elongated to a poly-line with a length of at least $n^3 - \mathcal{O}(n^2)$, using $n$ bends.
@@ -256,7 +340,7 @@ The above algorithm refines the grid by a factor of $n^2$, runtime $\mathcal{O}(
 \end{theorem}
 Every planar graph $G$ admits a poly-line drawing with an edge-length ratio of $\mathcal{O}(1)$ in area $\mathcal{O}(n^3)\times \mathcal{O}(n^3)$, allowing up to $n$ bends per edge.
 \begin{proof}
-	At first, add edges to $G$ so it is a maximal planar graph $G_{\max}$ and mark them. Then, draw $G_{\max}$ according to the proof of Theorem \ref{theorem:max-planar-ratio1}. The output is a poly-line grid drawing in area $\mathcal{O}(n^2)\times \mathcal{O}(n^2)$ with an edge-length ratio of $\mathcal{O}(1)$ and up to $\mathcal{O}(n)$ bends per edge. Afterwards, remove all marked edges from $G_{\max}$ to obtain the drawing for $G$.
+	At first, add edges to $G$ so it is a maximal planar graph $G_{\max}$ and mark them. Then, draw $G_{\max}$ according to the proof of Theorem \ref{theorem:max-planar-ratio1}. The output is a poly-line grid drawing in area $\mathcal{O}(n^2)\times \mathcal{O}(n^2)$ with an edge-length ratio of $\mathcal{O}(1)$ and up to $\mathcal{O}(n)$ bends per edge. Afterwards, remove all marked edges from $G_{\max}$ to obtain $\Omega_G$.
 \end{proof}
 
 The following observation describes the behaviour of the ratio of large-scale graphs.
@@ -277,5 +361,58 @@ Let $\Omega_G$ be a poly-line drawing of $G$ with a ratio of $r$, using $n$ bend
 \bigskip
 The reason for this to happen is that every line-segment of the polyline has length at least $n^2 - \mathcal{O}(n)$. Using $r$ poly-lines, the length would be of form $r\cdot n^3 - \mathcal{O}(n^2)$. For large scale graphs, this might tend to 1. 
 
-%maybe erase this ones
-
+\subsection{An Example}\label{section:max_planar_example}
+In order to see the whole postprocessing, the ratio of a straight-line drawing of the complete graph $K_4$ is minimized. The input is a straight-line drawing $\Gamma_{K_4}$ on a grid of size $3\times3$.
+	\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.6\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=11]{drawings/maximal_planar.pdf}
+	\end{subfigure}
+	\caption{Input drawing of $K_4$ on a $3\times3$ grid}
+\end{figure}
+The ratio $r$ values $\sqrt{5}$, since the length of edge $(3,4)$ values 1 and the length of the edges $(1,4),(2,4)$ value $\sqrt{5}$.
+Since $\mid V\mid = 4$, the grid is refined by $4\cdot 4$, resulting in a grid of size $48\times48$. The graph is extended, so that the area for edge elongations is defined.
+	\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.6\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=12]{drawings/maximal_planar.pdf}
+	\end{subfigure}
+	\caption{Supergraph of $K_4$ on a $48\times48$ grid}
+\end{figure}
+Then, each edge is evaluated regarding its dashed cyan-colored bounding area and elongated with up to $n = 4$ bends.
+	\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.6\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=13]{drawings/maximal_planar.pdf}
+	\end{subfigure}
+	\caption{Inserting up to 4 bends per edge for ratio minimization}
+\end{figure}
+	\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.6\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=14]{drawings/maximal_planar.pdf}
+	\end{subfigure}
+	\caption{$\Omega_{K_4}$}
+\end{figure} 
+For the edges $(1,2),(1,3),(2,3)$, the elongation was softened to approximate the longest edge. In order to demonstrate, what happens with maximum elongation, the previously shortest edge was elongated as long as possible. The calculated lengths are:
+\begin{align}
+	|(1,4)| = |(2,4)|&= 44,72\\
+	|(1,2)| &= 44,39\\
+	|(3,4)| &= 55,45\\
+	|(1,3)| = |(2,3)| &= 43,56\\
+	\Rightarrow r &= 1,28
+\end{align}
+The reason that $r$ is not quite optimal lies in the fact that the previously shortest edge became the longest edge. So, it seems that the algorithm requires further adjusting regarding the resulting edge lengths. The following alternative drawing inherits a nearly optimal ratio:
+	\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.6\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=15]{drawings/maximal_planar.pdf}
+	\end{subfigure}
+	\caption{$\Omega'_{K_4}$}
+\end{figure}
+Here, $|(3,4)|=25,24$ and $r' = 1,04$. Nice.

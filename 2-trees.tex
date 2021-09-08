@@ -22,18 +22,66 @@ Since visibility representations and orthogonal box drawings can be converted to
 The drawing algorithm creates a visibility representation of a given maximal series-parallel graph and is also defined recursively based on 2-terminal SP graphs. The maximum height of the drawing is given by a recursive formula, depending of the heights of the subgraphs. [\cite{DBLP:journals/dcg/Biedl11}: Page 6 to 11]
 Concerning the edge-length ratio, the longest edge might depend on the height of the drawing while the shortest edge might be of unit length. The upper bound for the height will be determined with help of a recursive function $h(m)$, where $m$ describes the amount of edges.
 \begin{description}
-	\item[Invariant] Vertex $s$ contains the upper right corner of the bounding box, while vertex $t$ contains the lower right corner of the bounding box. The boxes for $s$ and $t$ can be stretched to the whole width of the drawing 
-	\TODO{Figure}
+	\item[Invariant] Vertex $s$ contains the upper right corner of the bounding box, while vertex $t$ contains the lower right corner of the bounding box. The boxes for $s$ and $t$ can be stretched to the whole width of the drawing.
 	\item[Base case] the base case is the edge $(s,t)$. Simply put $s$ over $t$ and the invariant holds. Here, the recursive function for the height description stops at $h(1) = 2$.
-	\TODO{Figure}
+		\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.3\linewidth}
+			\centering
+			\includegraphics[width=0.4\textwidth,page=1]{drawings/2-trees.pdf}
+		\end{subfigure}
+		\caption{Basecase }\label{im:SP_basecase}
+	\end{figure}
 	\item[Height] The height of a drawing can be increased in order to preserve the invariant. 
-	\TODO{Figure}
+		\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.7\textwidth,page=2]{drawings/2-trees.pdf}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+	\centering
+	\includegraphics[width=0.6\textwidth,page=3]{drawings/2-trees.pdf}
+	\caption{}
+\end{subfigure}
+	\caption{Terminal release so that $s,t$ span the bounding box (b)}\label{im:SP_terminal-release}
+\end{figure}
 	\item[Inductive step] This step is for $m>1$ edges and holds two major cases: a parallel composition and a serial composition. If the composition is a parallel one, then the recursive drawings of the $k$ parallel subgraphs will be of a serial composition and vice versa.
-	\TODO{Figure}
+
 	\begin{itemize}
 		\item During the parallel composition, $2\leq k$ subgraphs will first be ordered in their number of edges $(m_i \leq m_{i-1}, i \in[1..k])$ and then recursively drawn. The subgraphs are drawn in serial since the original step is the parallel case. The heights of the subgraph drawings are adjusted and unified with a terminal $s$ and $t$ on top and bottom of the bounding box. The height is bound by $h_p(m)\leq\max\{h(m-1),h\left(\frac{m}{2}\right)+2\}$
+		\begin{figure}[H]
+			\centering
+			\begin{subfigure}{0.7\linewidth}
+				\centering
+				\includegraphics[width=0.9\textwidth,page=4]{drawings/2-trees.pdf}
+			\end{subfigure}
+			\caption{Case P}\label{im:SP_CaseP}
+		\end{figure}
 		\item For the serial composition, two subgraphs $H_a, H_b$ with terminals  $s,x$ and $x,t$ are recursively drawn (in parallel). In a trivial case, one of the subgraphs is an edge and $h(m)\leq h(m-1)$. Note, that $x,t$ is an edge of $H_b$ since the original graph is a maximal series-parallel one. There are two outcomes of serial placement. Either, the boxes for $x$ and $t$ share the same row on the bottom of the bounding box, being connected horizontally, or $x$ lies in an interior row and is connected to $t$ vertically. A precomputed index $L$ determines, which case of serial composition holds (\cite{DBLP:journals/dcg/Biedl11}, Lemma 3.3, Page 11).
-		\TODO{Figures with both cases}
+\begin{figure}[H]
+			\centering
+			\begin{subfigure}{0.4\linewidth}
+				\centering
+				\includegraphics[width=0.9\textwidth,page=5]{drawings/2-trees.pdf}
+			\end{subfigure}
+			\caption{Case S1}\label{im:SP_CaseS1}
+		\end{figure}
+		\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.8\linewidth}
+		\centering
+		\includegraphics[width=\textwidth,page=6]{drawings/2-trees.pdf}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}{0.8\linewidth}
+		\centering
+		\includegraphics[width=\textwidth,page=7]{drawings/2-trees.pdf}
+		\caption{}
+	\end{subfigure}
+	\caption{Cases S2(a) and S2(b)}\label{im:SP_CaseS2ab}
+\end{figure}
 		The height is bound by:
 		\begin{align}
 			h_{S2a}(m)&\leq \max\{h(m-1),h\left(\frac{m}{2}\right)+L\}\\
@@ -58,17 +106,58 @@ In the next section, a modification of the three cases of the recursion will lea
 The modification alters line segments for every case of recursion while maintaining the invariant. All line segments will be longer than a variable noted $l_{\min}$. The behaviour of the height for every recursion is of interest.
 \begin{description}
 	\item[Invariant] The invariant will still hold for every case of recursion.
-	\TODO{Figure}
 	\item[Base case] the base case is the edge $(s,t)$. Simply put $s$ over $t$ and the invariant holds. It must hold that $h(1) \leq l_{\min}$ in order to validate a small edge-length ratio.
-	\TODO{Figure}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.2\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth,page=8]{drawings/2-trees.pdf}
+	\end{subfigure}
+	\caption{Case P}\label{im:SPm_basecase}
+\end{figure}
 	\item[Height] The height of a drawing can be increased in order to preserve the invariant. But, the height increase must value at least $l_{\min}$. Otherwise, an edge of length one could be placed below $s$ or above $t$.
-	\TODO{Figure}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.7\textwidth,page=9]{drawings/2-trees.pdf}
+	\end{subfigure}
+	\caption{The terminal release must insert edges of length at least $l_{\min}$}\label{im:SPm_terminal-release}
+\end{figure}
 	\item[Inductive step] 
 	\begin{itemize}
 		\item During the parallel composition, $2\leq k$ subgraphs will first be ordered in their number of edges $(m_i \leq m_{i-1}, i \in[1..k])$ and then recursively drawn. The height is bound by $h_p(m)\leq\max\{h(m-1),h\left(\frac{m}{2}\right)+2\cdot l_{\min}+2\}$, since the terminal releases must still maintaing a minimum length of $l_{\min}$.
-		\TODO{Figure}
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.4\linewidth}
+			\centering
+			\includegraphics[width=0.7\textwidth,page=10]{drawings/2-trees.pdf}
+		\end{subfigure}
+		\caption{Case P in the modification. Where the orange line segments are placed, there are potential terminal releases which increase the height at least by $l_{\min}$}\label{im:SPm_caseP}
+	\end{figure}	
 		\item For the serial composition, two subgraphs $H_a, H_b$ with terminals  $s,x$ and $x,t$ are recursively drawn (in parallel). In a trivial case, one of the subgraphs is an edge and $h(m)\leq h(m-1)$. Here, the vertical line segment gets a bend to be elongated up to $2\cdot h_{S_1}(m)$. In the case S2a, the bend is inserted in the same way. Note, that possible terminal releases add the minimum length twice to $h_{S2a}(m)$. In the case S2b, no bend is introduced, but there are up to four terminal release induced height increases by $l_{\min}$.
-		\TODO{Figures with both cases}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\centering
+		\includegraphics[width=0.7\textwidth,page=11]{drawings/2-trees.pdf}
+	\end{subfigure}
+	\caption{Case S1 gets a bend so the minimum length restriction still holds}\label{im:SPm_S1}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.7\linewidth}
+		\centering
+		\includegraphics[width=\textwidth,page=12]{drawings/2-trees.pdf}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}{0.7\linewidth}
+	\centering
+	\includegraphics[width=\textwidth,page=13]{drawings/2-trees.pdf}
+	\caption{}
+\end{subfigure}
+	\caption{Cases S2a and b also get a bend where necessary and inherit potential terminal release height increases by $l_{\min}$, analoguosly to case P in Figure \ref{im:SPm_caseP}}\label{im:SPm_S2ab}
+\end{figure}
 		The height is bound by:
 		\begin{align}
 			h_{S2a}(m)&\leq \max\{h(m-1),h\left(\frac{m}{2}\right)+L+l_{\min}+1\}\\
